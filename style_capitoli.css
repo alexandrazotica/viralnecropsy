@@ -133,7 +133,6 @@ width: calc(100% - 2.2rem); /* if padding-left + right = 2rem */
     display: flex;
     justify-content: space-between; /* Pushes first child to the left, second to the right */
     align-items: center; /* Aligns items vertically */
-    mix-blend-mode: difference;
 }
 
 .indice a {
@@ -153,7 +152,6 @@ width: calc(100% - 2.2rem); /* if padding-left + right = 2rem */
     text-align: center;
     line-height: 9.5rem;
     margin-top: 10rem;
-    mix-blend-mode: difference;
 }
 
 /* Adjust word styles */
@@ -499,4 +497,11 @@ a:hover {
     * {
         cursor: default;
     }
+}
+
+@supports not (mix-blend-mode: difference) {
+  .titolo {
+    color: black; /* fallback */
+    mix-blend-mode: normal;
+  }
 }
