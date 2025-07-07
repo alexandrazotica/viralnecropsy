@@ -1,0 +1,502 @@
+/* Global styles to hide cursor */
+  
+  /* 1. Load your variable font */
+  @font-face {
+    font-family: 'ExposureVAR'; /* Use your chosen family name */
+    src: url('assets/Fonts/ExposureTrialVAR.ttf') format('opentype');
+}
+  /* 1. FONT: Ronzino */
+  @font-face {
+    font-family: 'Ronzino'; /* Use your chosen family name */
+    src: url('assets/Fonts/Ronzino-Regular.otf') format('opentype');
+    font-weight: 100; /* Regular */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ronzino'; /* Use your chosen family name */
+    src: url('assets/Fonts/Ronzino-Oblique.otf') format('opentype');
+    font-weight: 100; /* Italic */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ronzino'; /* Use your chosen family name */
+    src: url('assets/Fonts/Ronzino-Bold.otf') format('opentype');
+    font-weight: 200; /* Bold */
+    font-style: normal;
+}
+
+  /* 1. FONT: Gaisyr */
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-Light-Trial.otf') format('opentype');
+    font-weight: 100; /* Light */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-LightItalic-Trial.otf') format('opentype');
+    font-weight: 100; /* Light */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-Book-Trial.otf') format('opentype');
+    font-weight: 200; /* Regular */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-BookItalic-Trial.otf') format('opentype');
+    font-weight: 200; /* Regular */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-Medium-Trial.otf') format('opentype');
+    font-weight: 300; /* Medium */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-Bold-Trial.otf') format('opentype');
+    font-weight: 400; /* Bold */
+    font-style: normal;
+}
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+/* Style the scrollbar track (the background of the scrollbar) */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Style the scrollbar thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 200, 0); /* Green color */
+    border-radius: 10px; /* Rounded corners for the thumb */
+    border: 3px solid #ffffff; /* Adding a little border for contrast */
+}
+
+/* Style the scrollbar thumb when hovered */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(0, 150, 0); /* Darker green when hovered */
+}
+
+*, *:active, *:focus, button:hover, span:hover, [draggable="true"] {
+    cursor: none !important;
+}
+
+html{
+    overflow-x: hidden;
+}
+
+
+/* Ensure body fills the entire viewport and centers content */
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    cursor: none !important;
+    overflow-x: hidden;
+}
+
+.container1 {
+  width: calc(100% - 2.3rem); /* if padding-left + right = 2rem */
+  padding-left: 1.5rem;
+}
+
+.container {
+width: calc(100% - 2.2rem); /* if padding-left + right = 2rem */
+  padding-left: 0.8rem;
+}
+
+.indice {
+    position: fixed;
+    top: 1rem;
+    left: 1.3rem;
+    width: calc(100% - 2rem); /* Adjust width while keeping space from both sides */
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between; /* Pushes first child to the left, second to the right */
+    align-items: center; /* Aligns items vertically */
+    mix-blend-mode: difference;
+}
+
+.indice a {
+    font-family: 'Ronzino', sans-serif;
+    font-weight: 200;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+}
+
+/* Center the title container */
+.titolo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    line-height: 9.5rem;
+    margin-top: 10rem;
+    mix-blend-mode: difference;
+}
+
+/* Adjust word styles */
+#word1 {
+    font-family: 'Ronzino', sans-serif;
+    font-weight: 200;
+    font-size: 9rem;
+    margin: 0;
+}
+
+@keyframes weightShift {
+    0% {
+        font-variation-settings: var(--min-weight);
+    }
+    100% {
+        font-variation-settings: var(--max-weight);
+    }
+}
+
+#word1_2 {
+    font-family: 'ExposureVAR', serif;
+    --min-weight: 'EXPO' 100;
+    --max-weight: 'EXPO' 20;
+    animation: weightShift 3s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+    font-size: 12rem;
+    padding-top: 1rem;
+    padding-inline: 2rem;
+    margin: 0;
+}
+
+#word2_2 {
+    font-family: 'ExposureVAR', serif;
+    --min-weight: 'EXPO' 80;
+    --max-weight: 'EXPO' -20;
+    animation: weightShift 3s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+    font-size: 12rem;
+    padding-top: 1rem;
+    padding-inline: 2rem;
+    margin: 0;
+}
+
+#word3_2 {
+    font-family: 'ExposureVAR', serif;
+    --min-weight: 'EXPO' 20;
+    --max-weight: 'EXPO' -60;
+    animation: weightShift 3s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+    font-size: 12rem;
+    padding-top: 1rem;
+    padding-inline: 2rem;
+    margin: 0;
+}
+
+#word4_2 {
+    font-family: 'ExposureVAR', serif;
+    --min-weight: 'EXPO' -20;
+    --max-weight: 'EXPO' -100;
+    animation: weightShift 3s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+    font-size: 12rem;
+    padding-top: 1rem;
+    margin: 0;
+    padding-inline: 2rem;
+}
+
+
+canvas {
+    position: fixed; /* Keeps it positioned across the whole document */
+    top: 0;
+    left: 0;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+    z-index: -1; /* Keeps it behind everything */
+    display: block;
+    pointer-events: none; /* Allow interactions with the page elements, not the canvas */
+    mix-blend-mode: difference;
+}
+
+#testo {
+    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 2.5rem; /* Optional: Adds spacing between columns */
+    width: 100%;
+    padding-left: 7rem;
+}
+
+.numero {
+    font-family: 'Ronzino', sans-serif;
+    font-weight: 200;
+    font-size: 1.2rem;
+        padding-left: 7rem;
+}
+
+.sottotitolo {
+    font-family: 'Gaisyr', sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+.paragrafo {
+    font-family: 'Gaisyr', serif;
+    font-weight: 200;
+    font-size: 1.2rem;
+    grid-column: span 6;
+    text-indent: 3rem; /* Indenta solo la prima riga */
+    padding-bottom: 5rem;
+}
+
+.didascalia {
+    font-family: 'Ronzino', sans-serif;
+    font-weight: 100;
+    font-size: 1rem;
+}
+
+iframe {
+    pointer-events: auto;
+}
+
+#testo iframe {
+    height: 16rem;
+    border-radius: 1rem;
+    pointer-events: auto; /* Allow interaction with iframe */
+
+}
+
+/* Content that comes after the title */
+.content {
+    padding-top: 20px; /* Adds space after the title */
+}
+
+.titolosottocapitolo {
+    display: flex;
+    margin-top:7rem;
+    width: 50%;
+}
+
+.titolosottocapitolo span {
+    padding-right: 1.5rem;
+}
+
+p {
+    margin: 0;
+}
+
+.citazione {
+    font-style: italic;
+    padding-block: 2rem;
+    padding-left: 3rem;
+    text-indent: 0;
+}
+
+.citazione1 {
+    padding-block: 2rem;
+    padding-left: 3rem;
+    text-indent: 0;
+}
+
+u {
+    color: rgb(0, 100, 0); /* Colore del testo */
+    transition: color 0.5s ease-out;
+}
+
+u:hover {
+    color: rgb(0, 200, 0); /* Colore del testo */
+}
+
+a {
+    color: rgb(0, 100, 0); /* Colore del testo */
+    transition: color 0.5s ease-out;
+    text-decoration: solid;
+}
+
+a:hover {
+    color: rgb(0, 200, 0); /* Colore del testo */
+}
+
+.special-hover {
+    color: rgb(0, 200, 0); /* Colore del testo */
+}
+
+.multi-hover {
+    color: rgb(0, 200, 0); /* Colore del testo */
+}
+
+#navigation1 {
+    display: flex;
+    justify-content: center; /* Aligns content to the right */
+    font-family: 'Ronzino', sans-serif;
+    font-weight: 200;
+    font-size: 1.5rem;
+    padding-bottom: 3rem;
+    padding-left: 12px;
+}
+
+#navigation1 a, #navigation a {
+    color: black;
+}
+
+#navigation1 a:hover, #navigation a:hover {
+    color: rgb(0, 200, 0); /* Colore del testo */
+}
+
+#navigation {
+    display: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 5rem;
+    font-family: 'Ronzino', sans-serif;
+    font-weight: 200;
+    font-size: 1.5rem;
+    left: 1.3rem;
+    width: calc(100% - 1.8rem); /* Adjust width while keeping space from both sides */
+}
+
+#next, #prec {
+    padding: 0; /* Remove unnecessary padding */
+}
+
+#next a, #prec a {
+    text-decoration: none;
+}
+
+/* Mobile First Approach */
+@media (max-width: 480px) {
+
+    .titolo {
+        margin-top: 10rem;
+        line-height: 3rem;
+    }
+
+    #word1 {
+        font-size: 3.6rem
+    }
+
+    #word1_2 {
+        font-size: 3.6rem;
+        padding-inline: 0rem;
+    }
+
+    #word2_2, #word3_2, #word4_2 {
+        font-size: 4.4rem;
+    }
+
+    #testo {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding-left: 0rem;
+    }
+
+    .paragrafo {
+        grid-column: 1 / -1;
+        text-indent: 1.5rem;
+        padding-bottom: 3rem;
+    }
+
+    .img-container {
+        grid-column: 1 / -1;
+    }
+
+    #testo iframe {
+        height: 10rem;
+    }
+
+    .titolosottocapitolo {
+        width: 100%;
+        margin-top: 4rem;
+    }
+
+    .citazione {
+        padding-left: 1.5rem;
+    }
+
+    .numero {
+        padding-left: 0rem;
+    }
+
+    .numero,
+    .sottotitolo,
+    .paragrafo {
+        font-size: 1.1rem;
+        line-height: 1.5rem;
+        text-align: justify;
+        hyphens: auto;
+    }
+}
+
+@media (max-width: 1024px) and (min-width: 481px) {
+    .titolo {
+        margin-top: 8rem;
+        line-height: 7rem;
+    }
+
+    #word1 {
+        font-size: 6rem;
+    }
+
+    #word1_2,
+    #word2_2,
+    #word3_2,
+    #word4_2 {
+        font-size: 8rem;
+        padding-inline: 1rem;
+    }
+
+    #testo {
+        grid-template-columns: repeat(8, 1fr);
+        gap: 2rem;
+    }
+
+    .paragrafo {
+        grid-column: span 5;
+        text-indent: 2rem;
+        padding-bottom: 4rem;
+    }
+
+    .numero {
+        font-size: 1.2rem;
+    }
+
+    .sottotitolo,
+    .paragrafo {
+        font-size: 1.15rem;
+    }
+
+    .titolosottocapitolo {
+        width: 80%;
+        margin-top: 5rem;
+    }
+
+    #testo iframe {
+        height: 14rem;
+    }
+
+    .citazione {
+        padding-left: 2rem;
+    }
+}
+
+
+/* Touch Device Adjustments */
+@media (hover: none) and (pointer: coarse) {
+    * {
+        cursor: default;
+    }
+}

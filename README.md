@@ -1,0 +1,1 @@
+Sito web nato dal progetto editoriale "Viral Necropsy" realizzato per il corso di Cultura dell'Immagine digitale al Politecnico di Milano

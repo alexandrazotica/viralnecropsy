@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Viral Necropsy</title>
+
+  <!-- p5.js library -->
+  <script src="p5/p5.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
+
+  <!-- Your sketch -->
+  <script src="viralnecropsy_particles.js" defer></script>
+  <script src="cursor.js"></script>
+
+  <style>
+    html, body, *, *:hover, *:focus, *:active, 
+a, a:hover, a:focus, a:active,
+button, button:hover, button:focus, button:active,
+input, textarea, select, [role="button"], [onclick] {
+  cursor: none !important;
+  user-select: none !important;
+}
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      cursor: none !important;
+      box-sizing: border-box;
+      position: relative;
+    }
+
+    @font-face {
+      font-family: 'ExposureVAR';
+      src: url('assets/Fonts/ExposureTrialVAR.ttf') format('opentype');
+    }
+
+    @font-face {
+      font-family: 'Ronzino';
+      src: url('assets/Fonts/Ronzino-Regular.otf') format('opentype');
+    }
+
+    @font-face {
+      font-family: 'Ronzino';
+      src: url('assets/Fonts/Ronzino-Bold.otf') format('opentype');
+      font-weight: 200;
+      font-style: normal;
+    }
+
+    @font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-Light-Trial.otf') format('opentype');
+    font-weight: 100; /* Light */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-LightItalic-Trial.otf') format('opentype');
+    font-weight: 100; /* Light */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-Book-Trial.otf') format('opentype');
+    font-weight: 200; /* Regular */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-BookItalic-Trial.otf') format('opentype');
+    font-weight: 200; /* Regular */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-Medium-Trial.otf') format('opentype');
+    font-weight: 300; /* Medium */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-Bold-Trial.otf') format('opentype');
+    font-weight: 400; /* Bold */
+    font-style: normal;
+}
+
+    /* Style the scrollbar thumb (the draggable part of the scrollbar) */
+/* Style the scrollbar */
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+/* Style the scrollbar track (the background of the scrollbar) */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Style the scrollbar thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 0, 0); /* Green color */
+    border-radius: 10px; /* Rounded corners for the thumb */
+    border: 3px solid rgb(0, 200, 0); /* Adding a little border for contrast */
+}
+
+/* Style the scrollbar thumb when hovered */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(0, 0, 0); /* Darker green when hovered */
+}
+
+    body {
+      background-color: rgb(0, 200, 0);
+    }
+
+    .container {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      z-index: 5;
+      pointer-events: none;
+      justify-content: center;
+      align-self: center;
+    }
+
+    .indice {
+      position: fixed;
+      padding-left: 1.3rem;
+      padding-top: 1rem;
+      width: calc(100% - 2.8rem);
+      z-index: 99999;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      pointer-events: auto;
+    }
+
+    .indice a {
+      font-family: 'Ronzino', sans-serif;
+      font-weight: 200;
+      font-size: 1.5rem;
+      text-decoration: none;
+      color: rgb(0, 0, 0);
+      transition: color 0.5s ease-out;
+    }
+
+    a:hover {
+  color: rgb(200, 0, 200); /* Colore del testo */
+}
+
+    #title-wrapper {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.8s ease-in-out;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    .text {
+      text-align: center;
+      white-space: nowrap;
+      line-height: 0.5;
+      color: rgb(0, 0, 0);
+      mix-blend-mode: difference;
+    }
+
+    .text > *:not(button) {
+      mix-blend-mode: difference;
+    }
+
+    #word1,
+    #word2 {
+      display: block;
+      font-family: 'ExposureVAR', serif;
+      padding: 0 2rem;
+      font-size: 0;
+    }
+
+    #word2 {
+      padding-bottom: 6rem;
+    }
+
+    #word1 span,
+    #word2 span {
+      display: inline-block;
+      font-size: clamp(10rem, 14vw, 17rem);
+      line-height: 0.75;
+      vertical-align: bottom;
+      animation: grow 1.5s cubic-bezier(0.65, 0, 0.35, 1) alternate infinite;
+      animation-delay: calc((var(--nth-row) + var(--nth-letter)) * -0.2s);
+    }
+
+    @keyframes grow {
+      0% {
+        font-variation-settings: 'EXPO' 60;
+      }
+      100% {
+        font-variation-settings: 'EXPO' -70;
+      }
+    }
+
+    #word1 {
+      --nth-row: 1;
+    }
+
+    #word2 {
+      --nth-row: 2;
+    }
+
+    #letter1 { --nth-letter: 8; }
+    #letter2 { --nth-letter: 7; }
+    #letter3 { --nth-letter: 6; }
+    #letter4 { --nth-letter: 5; }
+    #letter5 { --nth-letter: 4; }
+    #letter6 { --nth-letter: 1; }
+    #letter7 { --nth-letter: 2; }
+    #letter8 { --nth-letter: 3; }
+    #letter9 { --nth-letter: 4; }
+    #letter10 { --nth-letter: 5; }
+    #letter11 { --nth-letter: 6; }
+    #letter12 { --nth-letter: 7; }
+    #letter13 { --nth-letter: 8; }
+
+    #sottotitolo {
+      font-family: 'Ronzino', sans-serif;
+      font-size: 2rem;
+      padding: 2rem;
+    }
+
+    #line1,
+    #line2 {
+      display: block;
+    }
+
+    #line2 {
+      padding: 1.3rem;
+    }
+
+    canvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      width: 100vw;
+      height: 100vh;
+    }
+
+    /* Scrollable image container */
+    #image-scroll-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      overflow-y: scroll;
+      z-index: 100;
+    }
+
+    #scroll-image {
+      transform: translateY(150%);
+      transition: transform 1s ease-in-out;
+      display: flex;
+      justify-content: center;
+      align-items: start;
+      scale: 45%;
+      padding-bottom: 12rem;
+    }
+
+    #scroll-image img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 1rem;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background: rgb(0, 0, 0);
+  z-index: 10000;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 1rem 0;
+  pointer-events: auto;
+}
+
+.riga-containerfase {
+  display: flex;
+  flex-direction: block;
+  align-items: center;
+  font-family: 'Ronzino', sans-serif;
+}
+
+.fase {
+    font-family: 'Ronzino', sans-serif;
+    font-weight: 200;
+    font-size: 1.5rem;
+    background: transparent;
+    color: rgb(0, 200, 0);
+    margin-right: 1rem;
+     transition: all 0.8s ease-in-out;
+}
+
+.titolo-sezione {
+      font-family: 'Gaisyr', serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 1.5rem;
+    background: transparent;
+    color: rgb(0, 200, 0);
+    transition: all 0.8s ease-in-out;
+}
+
+.fase:hover {
+  color: rgb(200, 0, 200); /* Colore del testo */
+}
+
+.titolo-sezione:hover {
+  color: rgb(200, 0, 200); /* Colore del testo */
+}
+
+#dark-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  opacity: 0;
+  z-index: 5; /* Just below the scroll image (which is z-index: 10) */
+  transition: opacity 0.5s ease;
+  pointer-events: none; /* Allows clicks to pass through */
+}
+
+#wrapper {
+  display: table;
+  width:100%;
+  height:100%;
+}
+
+#wrapper-inner {
+  display: table-cell;
+  vertical-align:middle;
+  width:100%;
+  height:100%;
+}
+
+#scroll-down {
+  display: block;
+  position: relative;
+  padding-top: 40px;
+  text-align: center;
+}
+
+/* Arrow container */
+.arrow-down {
+  display: block;
+  margin: 0 auto;
+  width: 20px; /* Match arrow width */
+  height: 38px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Arrow visual */
+.arrow-down:after {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-top: 2.5px solid #000;
+  border-right: 2.5px solid #000;
+  transform: rotate(135deg);
+  margin: 0 auto;
+}
+
+/* Vertical bar above arrow */
+#scroll-down::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2.5px;
+  height: 65px;
+  background: #000;
+  animation: elasticus 1.2s cubic-bezier(1, 0, 0, 1) infinite;
+}
+
+@-webkit-keyframes elasticus {
+    0% {
+        -webkit-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -moz-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0);
+    }
+    50% {
+        -webkit-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    50.1% {
+        -webkit-transform-origin: 0% 100%;
+        -ms-transform-origin: 0% 100%;
+        -moz-transform-origin: 0% 100%;
+        -o-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    100% {
+        -webkit-transform-origin: 0% 100%;
+        -ms-transform-origin: 0% 100%;
+        -moz-transform-origin: 0% 100%;
+        -o-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+        -webkit-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -moz-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0);
+    }
+}
+@-moz-keyframes elasticus {
+    0% {
+        -webkit-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -moz-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0);
+    }
+    50% {
+        -webkit-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    50.1% {
+        -webkit-transform-origin: 0% 100%;
+        -ms-transform-origin: 0% 100%;
+        -moz-transform-origin: 0% 100%;
+        -o-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    100% {
+        -webkit-transform-origin: 0% 100%;
+        -ms-transform-origin: 0% 100%;
+        -moz-transform-origin: 0% 100%;
+        -o-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+        -webkit-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -moz-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0);
+    }
+}
+@-o-keyframes elasticus {
+    0% {
+        -webkit-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -moz-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0);
+    }
+    50% {
+        -webkit-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    50.1% {
+        -webkit-transform-origin: 0% 100%;
+        -ms-transform-origin: 0% 100%;
+        -moz-transform-origin: 0% 100%;
+        -o-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    100% {
+        -webkit-transform-origin: 0% 100%;
+        -ms-transform-origin: 0% 100%;
+        -moz-transform-origin: 0% 100%;
+        -o-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+        -webkit-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -moz-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0);
+    }
+}
+@keyframes elasticus {
+    0% {
+        -webkit-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -moz-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0);
+    }
+    50% {
+        -webkit-transform-origin: 0% 0%;
+        -ms-transform-origin: 0% 0%;
+        -moz-transform-origin: 0% 0%;
+        -o-transform-origin: 0% 0%;
+        transform-origin: 0% 0%;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    50.1% {
+        -webkit-transform-origin: 0% 100%;
+        -ms-transform-origin: 0% 100%;
+        -moz-transform-origin: 0% 100%;
+        -o-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+        -webkit-transform: scale(1, 1);
+        -ms-transform: scale(1, 1);
+        -moz-transform: scale(1, 1);
+        -o-transform: scale(1, 1);
+        transform: scale(1, 1);
+    }
+    100% {
+        -webkit-transform-origin: 0% 100%;
+        -ms-transform-origin: 0% 100%;
+        -moz-transform-origin: 0% 100%;
+        -o-transform-origin: 0% 100%;
+        transform-origin: 0% 100%;
+        -webkit-transform: scale(1, 0);
+        -ms-transform: scale(1, 0);
+        -moz-transform: scale(1, 0);
+        -o-transform: scale(1, 0);
+        transform: scale(1, 0);
+    }
+}
+
+.reveal-btn {
+  cursor: pointer;
+  pointer-events: auto;   /* overrides any parent with pointer‑events:none */
+}
+
+@media (max-width: 1500px) {
+      #scroll-image {
+      scale: 55%;
+    }
+}
+
+@media (max-width: 1024px) {
+  footer {
+    padding: 0.8rem 0;
+  }
+  
+  .riga-containerfase {
+    flex-direction: column;
+    align-items: center;
+    padding: 0 0.8rem;
+  }
+  
+  .titolo-sezione {
+    display: none;
+  }
+  
+  .fase {
+    margin-right: 0;
+    font-size: clamp(1.2rem, 3vw, 1.7rem);
+  }
+
+      #scroll-image {
+      scale: 80%;
+    }
+}
+
+    @media (max-width: 768px) {
+      #word1 span,
+      #word2 span {
+        font-size: clamp(4rem, 16vw, 14rem);
+      }
+
+      #sottotitolo {
+        font-size: clamp(1.35rem, 5vw, 1.8rem);
+        line-height: clamp(0.02rem, 1.6vw, 0.8rem);
+      }
+
+      #word2 {
+      padding-bottom: 2.5rem;
+    }
+
+      #scroll-image {
+      scale: 90%;
+    }
+    }
+
+    @media (max-width: 480px) {
+      #scroll-image {
+      scale: 100%;
+    }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <div class="indice">
+    <a href="landing.html">Home</a>
+    <a href="menu.html">Indice</a>
+  </div>
+
+  <!-- Title & Canvas -->
+  <div class="container">
+    <div id="title-wrapper">
+      <div class="text">
+        <span id="word1">
+          <span id="letter1">V</span>
+          <span id="letter2">i</span>
+          <span id="letter3">r</span>
+          <span id="letter4">a</span>
+          <span id="letter5">l</span>
+        </span>
+        <span id="word2">
+          <span id="letter6">N</span>
+          <span id="letter7">e</span>
+          <span id="letter8">c</span>
+          <span id="letter9">r</span>
+          <span id="letter10">o</span>
+          <span id="letter11">p</span>
+          <span id="letter12">s</span>
+          <span id="letter13">y</span>
+        </span>
+        <span id="sottotitolo">
+          <span id="line1">IL CICLO DI VITA DELLA VIRALITÀ</span>
+          <span id="line2">ATTRAVERSO IL CASO BRAT</span>
+        </span>
+      </div>
+
+            <!-- Scrollable Image -->
+  <!-- Scrollable image wrapper -->
+<div id="wrapper">
+    <div id="wrapper-inner">
+       <div id="scroll-down" class="reveal-btn">
+        <span class="arrow-down">
+  <!-- css generated icon -->
+      </span>
+      </div>
+    </div>
+</div>
+    </div>
+  </div>
+
+  <!-- Scrollable Image -->
+  <!-- Scrollable image wrapper -->
+<div id="image-scroll-wrapper">
+  <div id="scroll-image">
+    <img src="assets/Images/1-menu-letter.jpg" alt="Viral Necropsy Visual">
+  </div>
+</div>
+
+<!-- Dark overlay (outside the scrollable wrapper!) -->
+<div id="dark-overlay"></div>
+
+  <footer>
+    <div class="riga-containerfase">
+      <span class="fase" data-link="FASE1.html">FASE 1</span>
+      <span class="titolo-sezione" data-link="FASE1.html">Incubazione</span>
+      </div>
+
+      <div class="riga-containerfase">
+      <span class="fase" data-link="FASE2.html">FASE 2</span>
+      <span class="titolo-sezione" data-link="FASE2.html">Prodromo</span>
+      </div>
+
+      <div class="riga-containerfase">
+      <span class="fase" data-link="FASE3.html">FASE 3</span>
+      <span class="titolo-sezione" data-link="FASE3.html">Diffusione</span>
+      </div>
+
+      <div class="riga-containerfase">
+      <span class="fase" data-link="FASE4.html">FASE 4</span>
+      <span class="titolo-sezione" data-link="FASE4.html">Latenza</span>
+      </div>
+  </footer>
+
+  <!-- Scroll Script -->
+  <script>
+    // Hide cursor on mouse movement (even if CSS fails)
+document.addEventListener('mousemove', () => {
+  document.body.style.cursor = 'none';
+});
+
+// Re-hide cursor after hovering interactive elements
+document.querySelectorAll('a, button, input, [role="button"]').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    document.body.style.cursor = 'none';
+  });
+});
+
+// Disable default hover behaviors
+document.addEventListener('DOMContentLoaded', () => {
+  const interactiveElements = [
+    'a', 'button', 'input', 'textarea', 'select', 
+    '[role="button"]', '[onclick]', '[tabindex]'
+  ];
+  
+  interactiveElements.forEach(selector => {
+    document.querySelectorAll(selector).forEach(el => {
+      el.style.cursor = 'none !important';
+      el.addEventListener('mouseover', (e) => {
+        e.target.style.cursor = 'none';
+      });
+    });
+  });
+});
+
+     const imageScrollWrapper = document.getElementById('image-scroll-wrapper');
+const scrollImage = document.getElementById('scroll-image');
+const darkOverlay = document.getElementById('dark-overlay');
+
+imageScrollWrapper.addEventListener('scroll', () => {
+  const scrollTop = imageScrollWrapper.scrollTop;
+
+  const maxOpacity = 0.5;
+  const maxScroll = 800;
+  const opacity = Math.min(scrollTop / maxScroll, maxOpacity);
+
+  darkOverlay.style.opacity = opacity;
+
+  if (scrollTop > 1000) {
+    scrollImage.classList.add('visible');
+  } else {
+    scrollImage.classList.remove('visible');
+  }
+});
+
+ document.querySelectorAll('.riga-containerfase span').forEach(span => {
+    span.addEventListener('click', () => {
+      const link = span.getAttribute('data-link');
+      if (link) window.location.href = link;
+    });
+  });
+  
+  </script>
+
+</body>
+</html>

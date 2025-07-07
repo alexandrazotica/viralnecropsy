@@ -1,0 +1,292 @@
+/* Global styles to hide cursor */
+  
+  /* 1. Load your variable font */
+  @font-face {
+    font-family: 'ExposureVAR'; /* Use your chosen family name */
+    src: url('assets/Fonts/ExposureTrialVAR.ttf') format('opentype');
+}
+  /* 1. FONT: Ronzino */
+  @font-face {
+    font-family: 'Ronzino'; /* Use your chosen family name */
+    src: url('assets/Fonts/Ronzino-Regular.otf') format('opentype');
+    font-weight: 100; /* Regular */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Ronzino'; /* Use your chosen family name */
+    src: url('assets/Fonts/Ronzino-Oblique.otf') format('opentype');
+    font-weight: 100; /* Italic */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Ronzino'; /* Use your chosen family name */
+    src: url('assets/Fonts/Ronzino-Bold.otf') format('opentype');
+    font-weight: 200; /* Bold */
+    font-style: normal;
+}
+
+  /* 1. FONT: Gaisyr */
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-Light-Trial.otf') format('opentype');
+    font-weight: 100; /* Light */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-LightItalic-Trial.otf') format('opentype');
+    font-weight: 100; /* Light */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-Book-Trial.otf') format('opentype');
+    font-weight: 200; /* Regular */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-BookItalic-Trial.otf') format('opentype');
+    font-weight: 200; /* Regular */
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-Medium-Trial.otf') format('opentype');
+    font-weight: 300; /* Medium */
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gaisyr'; /* Use your chosen family name */
+    src: url('assets/Fonts/ABCGaisyr-Bold-Trial.otf') format('opentype');
+    font-weight: 400; /* Bold */
+    font-style: normal;
+}
+
+/* Style the scrollbar */
+::-webkit-scrollbar {
+    width: 12px; /* Width of the scrollbar */
+}
+
+/* Style the scrollbar track (the background of the scrollbar) */
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+/* Style the scrollbar thumb (the draggable part of the scrollbar) */
+::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 200, 0); /* Green color */
+    border-radius: 10px; /* Rounded corners for the thumb */
+    border: 3px solid #ffffff; /* Adding a little border for contrast */
+}
+
+/* Style the scrollbar thumb when hovered */
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(0, 150, 0); /* Darker green when hovered */
+}
+
+*, *:active, *:focus, button:hover, span:hover {
+    cursor: none !important;
+    user-select: none;
+}
+  
+/* Ensure body fills the entire viewport and centers content */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column; /* Stack the content vertically */
+    justify-content: flex-start; /* Align items to the start */
+    align-items: center; /* Center the content horizontally */
+    overflow-x: hidden; /* Prevent scrollbars from appearing if not needed */
+}
+
+.container {
+    margin-top: 2rem;
+    margin-left: 3rem;
+    margin-right: 3rem;
+}
+
+.indice {
+    position: fixed;
+    top: 1rem;
+    left: 1.3rem;
+    width: calc(100% - 2rem); /* Adjust width while keeping space from both sides */
+    z-index: 9999;
+    display: flex;
+    justify-content: space-between; /* Pushes first child to the left, second to the right */
+    align-items: center; /* Aligns items vertically */
+    mix-blend-mode: difference;
+}
+
+.indice a {
+    font-family: 'Ronzino', sans-serif;
+    font-weight: 200;
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    /* Add this to override the global a styles */
+    font-style: normal !important;
+    text-decoration: none !important;
+}
+
+.testo {
+    display: grid;
+    grid-template-columns: repeat(4, 2fr);
+    gap: 7rem; /* Optional: Adds spacing between columns */
+    width: 100%;
+    margin-top: 10rem;
+}
+
+.numero {
+    font-family: 'Ronzino', sans-serif;
+    font-weight: 200;
+    font-size: 1.2rem;
+}
+
+.sottotitolo {
+    font-family: 'Gaisyr', sans-serif;
+    font-weight: 400;
+    font-size: 1.2rem;
+}
+
+#fonte {
+    font-family: 'Ronzino', sans-serif;
+    font-weight: 100;
+    font-size: 1rem;
+    display: block; /* Ensures it behaves like a block element */
+    margin-top: 1.5rem; /* Adjust this value as needed */
+    text-indent: 1.5rem;
+}
+
+.titolocapitolo span {
+    margin-right: 1.5rem; 
+}
+
+a {
+    color: rgb(0, 100, 0); /* Colore del testo */
+    transition: color 0.5s ease-out;
+    text-decoration: solid;
+    font-family: 'Ronzino', sans-serif;
+    font-style: italic;
+}
+
+a:hover {
+    color: rgb(0, 200, 0); /* Colore del testo */
+}
+
+u {
+    color: rgb(0, 100, 0); /* Colore del testo */
+    transition: color 0.5s ease-out;
+}
+
+u:hover {
+    color: rgb(0, 200, 0); /* Colore del testo */
+}
+
+.numero[data-link]:hover,
+.sottotitolo[data-link]:hover {
+  color: rgb(0, 200, 0); /* Matching your link hover color */
+transition: color 0.5s ease-in-out;
+}
+
+.fase {
+    margin-bottom: 3rem;
+}
+
+  #word1_2 {
+    font-family: 'ExposureVAR', serif;
+    --min-weight: 'EXPO' 100;
+    --max-weight: 'EXPO' -100;
+    animation: weightShift 3s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
+    font-size: 12rem;
+    padding-top: 1rem;
+    padding-inline: 2rem;
+    margin: 0;
+}
+
+@keyframes weightShift {
+    0% {
+        font-variation-settings: var(--min-weight);
+    }
+    100% {
+        font-variation-settings: var(--max-weight);
+    }
+}
+
+.titolo {
+    display: flex;
+    line-height: 18rem;
+    margin-top: 7rem;
+    margin-bottom: 3rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Small screens: phones (up to 480px) */
+@media (max-width: 480px) {
+
+  .testo {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 5rem;
+  }
+
+  #word1_2 {
+    font-size: 4rem;
+    line-height: 6rem;
+    padding-inline: 1rem;
+  }
+
+  .titolo {
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .container {
+    margin-left: 2rem;
+    margin-right: 2rem;
+    width: calc(100% - 2.2rem); /* if padding-left + right = 2rem */
+  padding-left: 0.8rem;
+  }
+}
+
+/* Medium screens: tablets (481px to 1024px) */
+@media (min-width: 480px) and (max-width: 1024px) {
+  .testo {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    margin-top: 6rem;
+  }
+
+  #word1_2 {
+    font-size: 10rem;
+    padding-inline: 1.5rem;
+  }
+
+  .titolo {
+    margin-top: 6rem;
+    margin-bottom: 2rem;
+  }
+
+  .container {
+    margin-left: 2rem;
+    margin-right: 2rem;
+  }
+
+}
+
+
+
+
+
+
