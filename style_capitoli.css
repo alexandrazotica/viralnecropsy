@@ -225,7 +225,6 @@ canvas {
     z-index: -1; /* Keeps it behind everything */
     display: block;
     pointer-events: none; /* Allow interactions with the page elements, not the canvas */
-    mix-blend-mode: difference;
 }
 
 #testo {
