@@ -71,26 +71,23 @@
     font-style: normal;
 }
 
-/* Style the scrollbar */
+/* Scrollbar styles */
 ::-webkit-scrollbar {
-    width: 12px; /* Width of the scrollbar */
+    width: 8px;
 }
 
-/* Style the scrollbar track (the background of the scrollbar) */
 ::-webkit-scrollbar-track {
     background: transparent;
 }
 
-/* Style the scrollbar thumb (the draggable part of the scrollbar) */
 ::-webkit-scrollbar-thumb {
-    background-color: rgb(0, 200, 0); /* Green color */
-    border-radius: 10px; /* Rounded corners for the thumb */
-    border: 3px solid #ffffff; /* Adding a little border for contrast */
+    background-color: rgb(0, 200, 0);
+    border-radius: 10px;
+    border: 2px solid #ffffff;
 }
 
-/* Style the scrollbar thumb when hovered */
 ::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(0, 150, 0); /* Darker green when hovered */
+    background-color: rgb(0, 150, 0);
 }
 
 *, *:active, *:focus, button:hover, span:hover, [draggable="true"] {
@@ -121,18 +118,19 @@ body {
 
 .container {
 width: calc(100% - 4rem); /* if padding-left + right = 2rem */
-  padding-left: 0.8rem;
+  padding-left: 0.4rem;
 }
 
 .indice {
     position: fixed;
     top: 1rem;
-    left: 1.3rem;
-    width: calc(100% - 2rem); /* Adjust width while keeping space from both sides */
-    z-index: 9999;
+    left: 0.3rem;
+    right: 0rem;
+    z-index: 99999;
     display: flex;
-    justify-content: space-between; /* Pushes first child to the left, second to the right */
-    align-items: center; /* Aligns items vertically */
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
 }
 
 .indice a {
