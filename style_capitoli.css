@@ -115,8 +115,8 @@ body {
 }
 
 .container1 {
-  width: calc(100% - 2.3rem); /* if padding-left + right = 2rem */
-  padding-left: 1rem;
+  width: calc(100% - 2rem); /* if padding-left + right = 2rem */
+  padding-left: 0.8rem;
 }
 
 .container {
