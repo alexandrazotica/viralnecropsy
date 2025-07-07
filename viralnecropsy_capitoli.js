@@ -22,6 +22,12 @@ function setup() {
   canvas.style("pointer-events: none");
   noFill();
 
+  function trackScroll() {
+  targetScrollY = window.scrollY;
+  requestAnimationFrame(trackScroll);
+}
+trackScroll();
+
   // Add scroll event listener
   window.onscroll = () => {
     targetScrollY = window.scrollY; // Update target scroll position
