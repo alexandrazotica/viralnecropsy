@@ -222,7 +222,6 @@ canvas {
     height: 100%;
     display: block;
     z-index: -1;
-    mix-blend-mode: difference;
 }
 
 a {
@@ -288,7 +287,6 @@ a:hover {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    mix-blend-mode: difference;
     padding: 0 1rem;
 }
 
