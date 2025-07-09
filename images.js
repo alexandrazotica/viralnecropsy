@@ -83,35 +83,37 @@ function fadeOutAndRemove(img) {
   }
 
   function spawnMultipleImages(link, event, imageUrls) {
-    const imagesArray = imageUrls.split(",").map(img => img.trim());
-    const offsets = [
-      { x: 250, y: 0 },
-      { x: 270, y: 50 },
-      { x: 290, y: -50 },
-      { x: 310, y: 100 },
-      { x: 330, y: -100 }
-    ];
-  
-    // Generate a unique key prefix based on the link's href or id
-    const linkKeyPrefix = link.href || link.id || `link-${Math.random().toString(36).substr(2, 9)}`;
-  
-    imagesArray.forEach((imageUrl, index) => {
-      const offset = offsets[index] || { x: 250 + index * 20, y: 0 };
-      const img = createImage(event, imageUrl);
-      const draggable = new DraggableImage(
-        img,
-        event.clientX + offset.x,
-        event.clientY + window.scrollY + offset.y
-      );
-      // Use a unique key for each image
-      const key = `${linkKeyPrefix}-${index}`;
-      activeImages.set(key, draggable);
-    });
+  const imagesArray = imageUrls.split(",").map(img => img.trim());
+  const offsets = [
+    { x: 250, y: 0 },
+    { x: 270, y: 50 },
+    { x: 290, y: -50 },
+    { x: 310, y: 100 },
+    { x: 330, y: -100 }
+  ];
+
+  if (!link.dataset.keyPrefix) {
+    link.dataset.keyPrefix = link.href || link.id || `link-${Math.random().toString(36).substr(2, 9)}`;
   }
+  const linkKeyPrefix = link.dataset.keyPrefix;
+
+  imagesArray.forEach((imageUrl, index) => {
+    const offset = offsets[index] || { x: 250 + index * 20, y: 0 };
+    const img = createImage(event, imageUrl);
+    const draggable = new DraggableImage(
+      img,
+      event.clientX + offset.x,
+      event.clientY + window.scrollY + offset.y
+    );
+    const key = `${linkKeyPrefix}-${index}`;
+    activeImages.set(key, draggable);
+  });
+}
+
   
   function removeImages(link) {
   if (link.classList.contains("multi-hover")) {
-    const linkKeyPrefix = link.href || link.id || `link-${Math.random().toString(36).substr(2, 9)}`;
+    const linkKeyPrefix = link.dataset.keyPrefix;
     const imagesArray = link.getAttribute("data-images").split(",").map(img => img.trim());
     imagesArray.forEach((_, index) => {
       const key = `${linkKeyPrefix}-${index}`;
@@ -130,6 +132,7 @@ function fadeOutAndRemove(img) {
   }
   spawnedImages.delete(link);
 }
+
 
 
 function createImage(event, imageUrl) {
