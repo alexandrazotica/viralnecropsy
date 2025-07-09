@@ -241,9 +241,10 @@ canvas {
     font-family: 'Gaisyr', serif;
     font-weight: 200;
     font-size: 1.2rem;
-    grid-column: 3 / span 16;
+    grid-column: 3 / span 17;
     text-indent: 3rem; /* Indenta solo la prima riga */
-    padding-bottom: 5rem;
+    padding-bottom: 1rem;
+    line-height: 1.8rem;
 }
 
 .didascalia {
@@ -358,6 +359,10 @@ a:hover {
     padding: 0; /* Remove unnecessary padding */
 }
 
+#prec {
+    text-align: right;
+}
+
 #next a, #prec a {
     text-decoration: none;
 }
@@ -398,10 +403,11 @@ a:hover {
     grid-column: 2;
     font-weight: 200;
     font-size: 1.15rem;
-    text-indent: 0rem; /* Indenta solo la prima riga */
-    padding-bottom: 5rem;
+    text-indent: 0rem; 
+    padding-bottom: 1rem;
     display: block;
-            padding-right: 1rem;
+    padding-right: 1rem;
+    line-height: 1.6rem;
 }
 
 .paragrafo p {
@@ -422,6 +428,15 @@ a:hover {
     padding-block: 2rem;
     padding-left: 1.5rem;
     text-indent: 0;
+}
+
+#navigation1 {
+    display: flex;
+    justify-content: center; /* Aligns content to the right */
+    font-family: 'Ronzino', sans-serif;
+    font-weight: 200;
+    font-size: 1.5rem;
+    padding-bottom: 4rem;
 }
 }
 
@@ -452,7 +467,8 @@ a:hover {
     .paragrafo {
         grid-column: 2 / span 10; /* Centered content with margin on sides */
         text-indent: 2rem;
-        padding-bottom: 4rem;
+        padding-bottom: 1rem;
+            line-height: 1.7rem;
     }
 
     .numero {
