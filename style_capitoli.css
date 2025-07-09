@@ -329,8 +329,9 @@ a:hover {
     font-family: 'Ronzino', sans-serif;
     font-weight: 200;
     font-size: 1.5rem;
-    padding-bottom: 3rem;
+    padding-bottom: 5rem;
     padding-left: 12px;
+    margin-top: 2rem;
 }
 
 #navigation1 a, #navigation a {
@@ -348,11 +349,11 @@ a:hover {
     align-items: center;
     gap: 1rem;
     padding-bottom: 5rem;
+        margin-top: 3rem;
     font-family: 'Ronzino', sans-serif;
     font-weight: 200;
     font-size: 1.5rem;
     left: 1.3rem;
-    width: calc(100% - 1.8rem); /* Adjust width while keeping space from both sides */
 }
 
 #next, #prec {
@@ -437,6 +438,10 @@ a:hover {
     font-weight: 200;
     font-size: 1.5rem;
     padding-bottom: 4rem;
+}
+
+#navigation {
+        margin-top: 1rem;
 }
 }
 
