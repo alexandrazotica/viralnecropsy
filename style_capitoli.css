@@ -94,26 +94,24 @@
     cursor: none !important;
 }
 
-html{
-    overflow-x: hidden;
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
 
 /* Ensure body fills the entire viewport and centers content */
 body {
-    margin: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     cursor: none !important;
-    overflow-x: hidden;
+
 }
 
 .container {
-width: calc(100% - 4rem); /* if padding-left + right = 2rem */
-  padding-left: 0.4rem;
+
 }
 
 .indice {
@@ -223,17 +221,16 @@ canvas {
 #testo {
     margin-top: 2rem;
     display: grid;
-    grid-template-columns: repeat(10, 1fr);
+    grid-template-columns: repeat(30, 1fr);
     gap: 2.5rem; /* Optional: Adds spacing between columns */
     width: 100%;
-    padding-left: 7rem;
 }
 
 .numero {
     font-family: 'Ronzino', sans-serif;
     font-weight: 200;
     font-size: 1.2rem;
-        padding-left: 7rem;
+    padding-left: 7rem;
 }
 
 .sottotitolo {
@@ -246,7 +243,7 @@ canvas {
     font-family: 'Gaisyr', serif;
     font-weight: 200;
     font-size: 1.2rem;
-    grid-column: span 6;
+    grid-column: 3 / span 16;
     text-indent: 3rem; /* Indenta solo la prima riga */
     padding-bottom: 5rem;
 }
@@ -390,15 +387,28 @@ a:hover {
 
     #testo {
         grid-template-columns: 1fr;
+        padding-left: 0;
         gap: 1.5rem;
-        padding-left: 0rem;
     }
 
     .paragrafo {
-        grid-column: 1 / -1;
-        text-indent: 1.5rem;
-        padding-bottom: 3rem;
+    font-family: 'Gaisyr', serif;
+    font-weight: 200;
+    font-size: 1.2rem;
+    grid-column: 2 / span 15;
+    text-indent: 3rem; /* Indenta solo la prima riga */
+    padding-bottom: 5rem;
+}
+
+.titolosottocapitolo {
+        width: 100%;
+        margin-top: 4rem;
     }
+
+    .numero {
+        padding-left: 1.1rem;
+    }
+/*
 
     .img-container {
         grid-column: 1 / -1;
@@ -408,27 +418,20 @@ a:hover {
         height: 10rem;
     }
 
-    .titolosottocapitolo {
-        width: 100%;
-        margin-top: 4rem;
-    }
+    
 
     .citazione {
         padding-left: 1.5rem;
     }
 
-    .numero {
-        padding-left: 0rem;
-    }
+    
 
     .numero,
     .sottotitolo,
     .paragrafo {
         font-size: 1.1rem;
         line-height: 1.5rem;
-        text-align: justify;
-        hyphens: auto;
-    }
+    }*/
 }
 
 @media (max-width: 1024px) and (min-width: 481px) {

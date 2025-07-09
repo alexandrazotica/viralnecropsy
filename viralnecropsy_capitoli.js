@@ -205,10 +205,18 @@ function easeOutQuad(t) {
   return t * (2 - t);
 }
 
-/* Handle window resizing
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight); // Resize the canvas
-  initializeOutbreaks(); // Reinitialize outbreak centers and particles
+function checkIfTouchDevice() {
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 }
-*/
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight); // Always resize the canvas
+
+  if (!checkIfTouchDevice()) {
+    initializeOutbreaks(); // Only reinitialize on non-touch devices
+  }
+}
+
+console.log("Is touch device:", checkIfTouchDevice());
+
 
