@@ -15,7 +15,7 @@
 
   <!-- Link to external CSS file for styling -->
   <link rel="stylesheet" href="style_capitoli.css">
-  <link rel="stylesheet" href="style_loader.css">
+  <link rel="stylesheet" href="style_button.css">
 
 
 </head>
@@ -94,6 +94,23 @@
       <div id="prec"><a href="FASE2.html">Capitolo precedente</a></div>
       <div id="next"><a href="FASE4.html">Prossimo capitolo</a></div>
     </div>
+          <div id="particles-btn" class="toggle-btn">
+  <div class="toggle-circle"></div>
+</div>
 </body>
+<script>
+    const toggleBtn = document.getElementById('particles-btn');
+
+ toggleBtn.addEventListener('click', () => {
+    const canvas = document.querySelector('canvas');
+    const isActive = toggleBtn.classList.toggle('active');
+
+    if (isActive) {
+        canvas.classList.add('hidden');
+    } else {
+        canvas.classList.remove('hidden');
+    }
+});
+</script>
 </html>
 

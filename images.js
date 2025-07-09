@@ -13,31 +13,50 @@ document.addEventListener("DOMContentLoaded", () => {
     targetScrollY = window.scrollY;
   });
 
+  const style = document.createElement('style');
+style.textContent = `
+  .fade-out {
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+  }
+`;
+document.head.appendChild(style);
+
+function fadeOutAndRemove(img) {
+  img.classList.add("fade-out");
+  setTimeout(() => {
+    if (img.parentNode) {
+      img.parentNode.removeChild(img);
+    }
+  }, 600); // Match the CSS transition duration
+}
+
   hoverLinks.forEach(link => {
     if (isTouchDevice) {
-      // For touch devices, use click events
-      link.addEventListener("click", (event) => {
-        event.preventDefault(); // Prevent default link behavior
-        if (spawnedImages.has(link)) return;
+  // For touch devices, use click events
+  link.addEventListener("click", (event) => {
+    event.preventDefault(); // Prevent default link behavior
+    if (spawnedImages.has(link)) return;
 
-        if (link.classList.contains("multi-hover")) {
-          const imageUrls = link.getAttribute("data-images");
-          if (!imageUrls) return;
-          spawnMultipleImages(link, event, imageUrls);
-        } else {
-          const imageUrl = link.getAttribute("data-image");
-          if (!imageUrl) return;
-          spawnSingleImage(link, event, imageUrl);
-        }
-
-        spawnedImages.add(link);
-
-        // Remove images after 5 seconds
-        setTimeout(() => {
-          removeImages(link);
-        }, 2000); // 5 seconds
-      });
+    if (link.classList.contains("multi-hover")) {
+      const imageUrls = link.getAttribute("data-images");
+      if (!imageUrls) return;
+      spawnMultipleImages(link, event, imageUrls);
     } else {
+      const imageUrl = link.getAttribute("data-image");
+      if (!imageUrl) return;
+      spawnSingleImage(link, event, imageUrl);
+    }
+
+    spawnedImages.add(link);
+
+    // Remove images after 2 seconds
+    setTimeout(() => {
+      removeImages(link);
+    }, 3000); // <-- Already works for multi-hover, now applies to all
+  });
+}
+ else {
       // For non-touch devices, use hover events
       link.addEventListener("mouseenter", (event) => {
         if (spawnedImages.has(link)) return;
@@ -91,28 +110,27 @@ document.addEventListener("DOMContentLoaded", () => {
   }
   
   function removeImages(link) {
-    if (link.classList.contains("multi-hover")) {
-      // Generate the same unique key prefix as in spawnMultipleImages
-      const linkKeyPrefix = link.href || link.id || `link-${Math.random().toString(36).substr(2, 9)}`;
-      const imagesArray = link.getAttribute("data-images").split(",").map(img => img.trim());
-      imagesArray.forEach((_, index) => {
-        const key = `${linkKeyPrefix}-${index}`;
-        if (activeImages.has(key)) {
-          const draggable = activeImages.get(key);
-          document.body.removeChild(draggable.img);
-          activeImages.delete(key);
-        }
-      });
-    } else {
-      // Remove single image
-      if (activeImages.has(link)) {
-        const draggable = activeImages.get(link);
-        document.body.removeChild(draggable.img);
-        activeImages.delete(link);
+  if (link.classList.contains("multi-hover")) {
+    const linkKeyPrefix = link.href || link.id || `link-${Math.random().toString(36).substr(2, 9)}`;
+    const imagesArray = link.getAttribute("data-images").split(",").map(img => img.trim());
+    imagesArray.forEach((_, index) => {
+      const key = `${linkKeyPrefix}-${index}`;
+      if (activeImages.has(key)) {
+        const draggable = activeImages.get(key);
+        fadeOutAndRemove(draggable.img);
+        activeImages.delete(key);
       }
+    });
+  } else {
+    if (activeImages.has(link)) {
+      const draggable = activeImages.get(link);
+      fadeOutAndRemove(draggable.img);
+      activeImages.delete(link);
     }
-    spawnedImages.delete(link);
   }
+  spawnedImages.delete(link);
+}
+
 
 function createImage(event, imageUrl) {
   const img = new Image();

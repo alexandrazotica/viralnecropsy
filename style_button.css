@@ -1,0 +1,58 @@
+/* Toggle Container */
+#particles-btn.toggle-btn {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 9999;
+
+    width: 3.5rem;
+    height: 2.2rem;
+    background-color: rgb(0, 200, 0); /* Green = ON */
+    border-radius: 2rem;
+    display: flex;
+    align-items: center;
+    padding: 0 0.3rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Circle inside */
+#particles-btn .toggle-circle {
+    width: 1.6rem;
+    height: 1.6rem;
+    background-color: white;
+    border-radius: 50%;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0);
+}
+
+/* Toggle OFF State */
+#particles-btn.active {
+    background-color: rgb(0, 71, 0); /* Red = OFF */
+}
+
+#particles-btn.active .toggle-circle {
+    transform: translateX(1.85rem); /* Slide to the right */
+}
+
+/* Small screens: phones (up to 480px) */
+@media (max-width: 480px) {
+      /* Toggle Container */
+#particles-btn.toggle-btn {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+}
+    
+}
+
+canvas {
+  opacity: 1;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+canvas.hidden {
+  opacity: 0;
+}

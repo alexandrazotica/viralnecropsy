@@ -88,7 +88,7 @@
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgb(0, 150, 0);
-}*/
+}
 
 *, *:active, *:focus, button:hover, span:hover, [draggable="true"] {
     cursor: none !important;
@@ -98,8 +98,13 @@
     box-sizing: border-box;
 }
 
-
 /* Ensure body fills the entire viewport and centers content */
+
+*, *:active, *:focus, button:hover, span:hover {
+    cursor: none !important;
+    user-select: none;
+}
+
 body {
     min-height: 100vh;
     justify-content: flex-start;
@@ -107,9 +112,6 @@ body {
     cursor: none !important;
 }
 
-.container {
-
-}
 
 .indice {
     position: fixed;
@@ -210,7 +212,6 @@ canvas {
     left: 0;
     width: 100vw; /* Full viewport width */
     height: 100vh; /* Full viewport height */
-    z-index: -1; /* Keeps it behind everything */
     display: block;
     pointer-events: none; /* Allow interactions with the page elements, not the canvas */
 }
@@ -274,7 +275,7 @@ iframe {
 }
 
 .titolosottocapitolo span {
-    padding-right: 1.5rem;
+    padding-right: 1.3rem;
 }
 
 p {
@@ -378,25 +379,29 @@ a:hover {
         padding-inline: 0rem;
     }
 
-    #word2_2, #word3_2, #word4_2 {
-        font-size: 4.4rem;
+    #word2_2, #word3_2 {
+        font-size: 4rem;
+    }
+
+    #word4_2 {
+        font-size: 5rem;
     }
 
     #testo {
         grid-template-columns: 1fr;
         padding-left: 0;
         gap: 1.5rem;
-        padding-right: 1rem;
     }
 
     .paragrafo {
     font-family: 'Gaisyr', serif;
     grid-column: 2;
     font-weight: 200;
-    font-size: 1.2rem;
+    font-size: 1.15rem;
     text-indent: 0rem; /* Indenta solo la prima riga */
     padding-bottom: 5rem;
     display: block;
+            padding-right: 1rem;
 }
 
 .paragrafo p {
@@ -409,65 +414,51 @@ a:hover {
     }
 
     .numero {
-        padding-left: 1.1rem;
+        padding-left: 1.4rem;
     }
-/*
-
-    .img-container {
-        grid-column: 1 / -1;
-    }
-
-    #testo iframe {
-        height: 10rem;
-    }
-
-    
 
     .citazione {
-        padding-left: 1.5rem;
-    }
-
-    
-
-    .numero,
-    .sottotitolo,
-    .paragrafo {
-        font-size: 1.1rem;
-        line-height: 1.5rem;
-    }*/
+    font-style: italic;
+    padding-block: 2rem;
+    padding-left: 1.5rem;
+    text-indent: 0;
+}
 }
 
 @media (max-width: 1024px) and (min-width: 481px) {
     .titolo {
-        margin-top: 8rem;
-        line-height: 7rem;
+        margin-top: 6rem;
+        line-height: 6.5rem;
     }
 
     #word1 {
-        font-size: 6rem;
+        font-size: 5.5rem;
     }
 
     #word1_2,
     #word2_2,
     #word3_2,
     #word4_2 {
-        font-size: 8rem;
+        font-size: 6.5rem;
         padding-inline: 1rem;
     }
 
     #testo {
-        grid-template-columns: repeat(8, 1fr);
+        grid-template-columns: repeat(12, 1fr); /* More columns for better text flow */
         gap: 2rem;
+        padding-inline: 1rem;
     }
 
     .paragrafo {
-        grid-column: span 5;
+        grid-column: 2 / span 10; /* Centered content with margin on sides */
         text-indent: 2rem;
         padding-bottom: 4rem;
     }
 
     .numero {
-        font-size: 1.2rem;
+                grid-column: 1 / span 2;
+        font-size: 1.1rem;
+        padding-left: 1.5rem;
     }
 
     .sottotitolo,
@@ -476,18 +467,21 @@ a:hover {
     }
 
     .titolosottocapitolo {
-        width: 80%;
+        width: 90%;
         margin-top: 5rem;
     }
 
     #testo iframe {
         height: 14rem;
+        width: 100%;
     }
 
-    .citazione {
+    .citazione, .citazione1 {
         padding-left: 2rem;
+        padding-right: 1rem;
     }
 }
+
 
 
 /* Touch Device Adjustments */

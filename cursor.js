@@ -46,9 +46,7 @@ if (!isTouchDevice) {
         p.translate(p.mouseX, docMouseY);
         for (let particle of window.particles) {
           const d = p.dist(p.mouseX, docMouseY, particle.x, particle.y);
-          if (d < 15) {
-            tempCursorSize += p.map(d, 0, 100, 10, 40);
-          }
+          
         }
       }
 
