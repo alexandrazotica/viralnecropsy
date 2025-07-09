@@ -205,10 +205,10 @@ function easeOutQuad(t) {
   return t * (2 - t);
 }
 
-// Handle window resizing
+/* Handle window resizing
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight); // Resize the canvas
   initializeOutbreaks(); // Reinitialize outbreak centers and particles
 }
-
+*/
 
