@@ -71,7 +71,7 @@
     font-style: normal;
 }
 
-/* Scrollbar styles */
+/* Scrollbar styles 
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -88,7 +88,7 @@
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: rgb(0, 150, 0);
-}
+}*/
 
 *, *:active, *:focus, button:hover, span:hover, [draggable="true"] {
     cursor: none !important;
@@ -102,12 +102,9 @@
 /* Ensure body fills the entire viewport and centers content */
 body {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     cursor: none !important;
-
 }
 
 .container {
@@ -389,15 +386,21 @@ a:hover {
         grid-template-columns: 1fr;
         padding-left: 0;
         gap: 1.5rem;
+        padding-right: 1rem;
     }
 
     .paragrafo {
     font-family: 'Gaisyr', serif;
+    grid-column: 2;
     font-weight: 200;
     font-size: 1.2rem;
-    grid-column: 2 / span 15;
-    text-indent: 3rem; /* Indenta solo la prima riga */
+    text-indent: 0rem; /* Indenta solo la prima riga */
     padding-bottom: 5rem;
+    display: block;
+}
+
+.paragrafo p {
+    padding-bottom: 1rem;
 }
 
 .titolosottocapitolo {
