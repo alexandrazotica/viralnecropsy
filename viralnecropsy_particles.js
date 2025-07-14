@@ -98,7 +98,7 @@ function draw() {
         random(-2, 2)
       );
     }
-    nextAutoSpawnTime = millis() + random(1000, 5000); // Next spawn in 0.5-5 seconds
+    nextAutoSpawnTime = millis() + random(3500, 8000); // Next spawn in 0.5-5 seconds
   }
 
   let currentFps = frameRate();
