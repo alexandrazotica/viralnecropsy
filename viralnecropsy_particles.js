@@ -52,7 +52,7 @@ function setup() {
     maxParticles = 300;
     hoverRadius = 10;
     infectionRadius = 80;
-    numOutbreaks = 2;
+    numOutbreaks = 8;
     autoSpawnActive = true; // Enable auto-spawning for small screens
     nextAutoSpawnTime = millis() + random(1000, 6000); // First spawn in 0.5-5 seconds
   }
@@ -89,7 +89,7 @@ function draw() {
 
     // Auto-spawn images for small screens
   if (autoSpawnActive && millis() > nextAutoSpawnTime) {
-    const numImages = floor(random(1, 6)); // 1-5 images
+    const numImages = floor(random(1, 3)); // 1-5 images
     for (let i = 0; i < numImages; i++) {
       spawnImage(
         random(width), 
@@ -98,7 +98,7 @@ function draw() {
         random(-2, 2)
       );
     }
-    nextAutoSpawnTime = millis() + random(500, 5000); // Next spawn in 0.5-5 seconds
+    nextAutoSpawnTime = millis() + random(1000, 5000); // Next spawn in 0.5-5 seconds
   }
 
   let currentFps = frameRate();
