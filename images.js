@@ -140,8 +140,8 @@ function createImage(event, imageUrl) {
   img.src = imageUrl;
   img.style.position = "fixed";
   img.style.pointerEvents = "auto";
-  img.style.maxWidth = "25rem";
-  img.style.maxHeight = "25rem";
+  img.style.maxWidth = "30rem";
+  img.style.maxHeight = "30rem";
   img.style.width = "auto";
   img.style.height = "auto";
   img.style.zIndex = "1000";
