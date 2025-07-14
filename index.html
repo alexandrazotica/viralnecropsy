@@ -10,15 +10,29 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
 
   <!-- Your sketch -->
-  <script defer src="viralnecropsy_particles.js" defer></script>
+  <script defer src="viralnecropsy_particles.js"></script>
   <script defer src="cursor.js"></script>
   <script>
-    window.addEventListener('load', () => {
+   function waitForParticlesAndLoad(callback) {
+  const check = () => {
+    const scriptsReady = window.particlesReady === true;
+    const pageReady = document.readyState === 'complete';
+
+    if (scriptsReady && pageReady) {
+      callback();
+    } else {
+      setTimeout(check, 50);
+    }
+  };
+  check();
+}
+
+function startLoader() {
   const loader = document.getElementById('loader');
   const greenFill = document.getElementById('green-fill');
   const percentage = document.getElementById('loader-percentage');
 
-  const duration = 1500; // 1.5 seconds minimum
+  const duration = 1500;
   const steps = 60;
   const interval = duration / steps;
   let current = 0;
@@ -26,7 +40,6 @@
   const update = () => {
     current++;
     const percent = Math.min(100, Math.round((current / steps) * 100));
-
     greenFill.style.width = percent + '%';
     percentage.textContent = percent + '%';
 
@@ -35,13 +48,16 @@
     } else {
       setTimeout(() => {
         loader.classList.add('fade-out');
-        setTimeout(() => loader.remove(), 1000); // optional: remove from DOM
+        setTimeout(() => loader.remove(), 1000);
       }, 300);
     }
   };
 
   update();
-});
+}
+
+// ✅ Start loader only when both DOM & script are ready
+waitForParticlesAndLoad(startLoader);
   </script>
 
   <style>

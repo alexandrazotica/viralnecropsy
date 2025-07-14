@@ -386,3 +386,5 @@ function setupLinkHoverDetection() {
 
 function markOutbreaksForRemoval() { /* ... */ }
 function removeParticlesFromMarkedOutbreaks() { /* ... */ }
+
+window.particlesReady = true;
