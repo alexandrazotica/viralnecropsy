@@ -10,8 +10,39 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/addons/p5.sound.min.js"></script>
 
   <!-- Your sketch -->
-  <script src="viralnecropsy_particles.js" defer></script>
-  <script src="cursor.js"></script>
+  <script defer src="viralnecropsy_particles.js" defer></script>
+  <script defer src="cursor.js"></script>
+  <script>
+    window.addEventListener('load', () => {
+  const loader = document.getElementById('loader');
+  const greenFill = document.getElementById('green-fill');
+  const percentage = document.getElementById('loader-percentage');
+
+  const duration = 1500; // 1.5 seconds minimum
+  const steps = 60;
+  const interval = duration / steps;
+  let current = 0;
+
+  const update = () => {
+    current++;
+    const percent = Math.min(100, Math.round((current / steps) * 100));
+
+    greenFill.style.width = percent + '%';
+    percentage.textContent = percent + '%';
+
+    if (percent < 100) {
+      setTimeout(update, interval);
+    } else {
+      setTimeout(() => {
+        loader.classList.add('fade-out');
+        setTimeout(() => loader.remove(), 1000); // optional: remove from DOM
+      }, 300);
+    }
+  };
+
+  update();
+});
+  </script>
 
   <style>
     html, body, *, *:hover, *:focus, *:active, 
@@ -850,47 +881,6 @@ imageScrollWrapper.addEventListener('scroll', () => {
     });
   });
   
- const loader = document.getElementById('loader');
-const loaderPercentage = document.getElementById('loader-percentage');
-const loaderFill = loader; // We'll use ::before width controlled via JS
-
-let percent = 0;
-const duration = 1500; // 1.5 seconds
-const interval = 20; // update every 20ms
-const steps = duration / interval;
-let currentStep = 0;
-
-window.addEventListener('load', () => {
-  const loader = document.getElementById('loader');
-  const greenFill = document.getElementById('green-fill');
-  const percentage = document.getElementById('loader-percentage');
-
-  const duration = 3000; // total time for wipe
-  const steps = 60;      // number of updates
-  const interval = duration / steps;
-  let current = 0;
-
-  const update = () => {
-    current++;
-    const percent = Math.min(100, Math.round((current / steps) * 100));
-
-    greenFill.style.width = percent + '%';
-    percentage.textContent = percent + '%';
-
-    if (percent < 100) {
-      setTimeout(update, interval);
-    } else {
-      setTimeout(() => {
-        loader.classList.add('fade-out');
-        setTimeout(() => loader.remove(), 1000); // after fade
-      }, 300);
-    }
-  };
-
-  update();
-});
-
-
   </script>
 
 </body>
