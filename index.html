@@ -13,26 +13,12 @@
   <script defer src="viralnecropsy_particles.js"></script>
   <script defer src="cursor.js"></script>
   <script>
-   function waitForParticlesAndLoad(callback) {
-  const check = () => {
-    const scriptsReady = window.particlesReady === true;
-    const pageReady = document.readyState === 'complete';
-
-    if (scriptsReady && pageReady) {
-      callback();
-    } else {
-      setTimeout(check, 50);
-    }
-  };
-  check();
-}
-
-function startLoader() {
+    window.addEventListener('load', () => {
   const loader = document.getElementById('loader');
   const greenFill = document.getElementById('green-fill');
   const percentage = document.getElementById('loader-percentage');
 
-  const duration = 1500;
+  const duration = 3500; // 1.5 seconds minimum
   const steps = 60;
   const interval = duration / steps;
   let current = 0;
@@ -40,6 +26,7 @@ function startLoader() {
   const update = () => {
     current++;
     const percent = Math.min(100, Math.round((current / steps) * 100));
+
     greenFill.style.width = percent + '%';
     percentage.textContent = percent + '%';
 
@@ -48,16 +35,13 @@ function startLoader() {
     } else {
       setTimeout(() => {
         loader.classList.add('fade-out');
-        setTimeout(() => loader.remove(), 1000);
+        setTimeout(() => loader.remove(), 1000); // optional: remove from DOM
       }, 300);
     }
   };
 
   update();
-}
-
-// ✅ Start loader only when both DOM & script are ready
-waitForParticlesAndLoad(startLoader);
+});
   </script>
 
   <style>
