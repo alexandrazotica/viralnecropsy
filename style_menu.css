@@ -189,6 +189,7 @@ body {
     font-style: italic;
     font-size: 1.3rem;
     overflow-wrap: break-word;
+    line-height: 2rem;
 }
 
 /* Canvas styling */
@@ -318,6 +319,7 @@ a:hover {
     .nm-sottocapitolo {
         white-space: normal;
         width: auto;
+        line-height: 1.6rem;
     }
     
     .crediti {
