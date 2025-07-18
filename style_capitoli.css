@@ -1,10 +1,21 @@
 /* Global styles to hide cursor */
   
   /* 1. Load your variable font */
-  @font-face {
-    font-family: 'ExposureVAR'; /* Use your chosen family name */
-    src: url('assets/Fonts/ExposureTrialVAR.ttf') format('opentype');
-}
+      @font-face {
+      font-family: 'Villette';
+      src: url('assets/Fonts/VILLETTE_V.6.1.ttf') format('opentype');
+    }
+
+     @font-face {
+      font-family: 'Stix';
+      src: url('assets/Fonts/STIXTwoText[wght].ttf') format('opentype');
+    }
+
+    @font-face {
+      font-family: 'Fraunces';
+      src: url('assets/Fonts/Fraunces[SOFT,WONK,opsz,wght].ttf') format('opentype');
+    }
+
   /* 1. FONT: Ronzino */
   @font-face {
     font-family: 'Ronzino'; /* Use your chosen family name */
@@ -29,44 +40,24 @@
 
   /* 1. FONT: Gaisyr */
 
-@font-face {
-    font-family: 'Gaisyr'; /* Use your chosen family name */
-    src: url('assets/Fonts/ABCGaisyr-Light-Trial.otf') format('opentype');
-    font-weight: 100; /* Light */
-    font-style: normal;
-}
 
 @font-face {
-    font-family: 'Gaisyr'; /* Use your chosen family name */
-    src: url('assets/Fonts/ABCGaisyr-LightItalic-Trial.otf') format('opentype');
-    font-weight: 100; /* Light */
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Gaisyr'; /* Use your chosen family name */
-    src: url('assets/Fonts/ABCGaisyr-Book-Trial.otf') format('opentype');
+    font-family: 'Paragon'; /* Use your chosen family name */
+    src: url('assets/Fonts/Paragon-Regular.otf') format('opentype');
     font-weight: 200; /* Regular */
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Gaisyr'; /* Use your chosen family name */
-    src: url('assets/Fonts/ABCGaisyr-BookItalic-Trial.otf') format('opentype');
+    font-family: 'Paragon'; /* Use your chosen family name */
+    src: url('assets/Fonts/Paragonitalic-Regular.otf') format('opentype');
     font-weight: 200; /* Regular */
     font-style: italic;
 }
 
 @font-face {
-    font-family: 'Gaisyr'; /* Use your chosen family name */
-    src: url('assets/Fonts/ABCGaisyr-Medium-Trial.otf') format('opentype');
-    font-weight: 300; /* Medium */
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Gaisyr'; /* Use your chosen family name */
-    src: url('assets/Fonts/ABCGaisyr-Bold-Trial.otf') format('opentype');
+    font-family: 'Ortica'; /* Use your chosen family name */
+    src: url('assets/Fonts/OrticaLinear-Bold.otf') format('opentype');
     font-weight: 400; /* Bold */
     font-style: normal;
 }
@@ -162,9 +153,9 @@ body {
 }
 
 #word1_2 {
-    font-family: 'ExposureVAR', serif;
-    --min-weight: 'EXPO' 100;
-    --max-weight: 'EXPO' 20;
+    font-family: 'Villette', serif;
+    --min-weight: 'BLUR' -100;
+    --max-weight: 'BLUR' 50;
     animation: weightShift 3s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
     font-size: 12rem;
     padding-top: 1rem;
@@ -173,9 +164,9 @@ body {
 }
 
 #word2_2 {
-    font-family: 'ExposureVAR', serif;
-    --min-weight: 'EXPO' 80;
-    --max-weight: 'EXPO' -20;
+    font-family: 'Villette', serif;
+    --min-weight: 'BLUR' -80;
+    --max-weight: 'BLUR' 60;
     animation: weightShift 3s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
     font-size: 12rem;
     padding-top: 1rem;
@@ -184,9 +175,9 @@ body {
 }
 
 #word3_2 {
-    font-family: 'ExposureVAR', serif;
-    --min-weight: 'EXPO' 20;
-    --max-weight: 'EXPO' -60;
+    font-family: 'Villette', serif;
+    --min-weight: 'BLUR' -50;
+    --max-weight: 'BLUR' 80;
     animation: weightShift 3s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
     font-size: 12rem;
     padding-top: 1rem;
@@ -195,9 +186,9 @@ body {
 }
 
 #word4_2 {
-    font-family: 'ExposureVAR', serif;
-    --min-weight: 'EXPO' -20;
-    --max-weight: 'EXPO' -100;
+    font-family: 'Villette', serif;
+    --min-weight: 'BLUR' 0;
+    --max-weight: 'BLUR' 100;
     animation: weightShift 3s cubic-bezier(0.65, 0, 0.35, 1) infinite alternate;
     font-size: 12rem;
     padding-top: 1rem;
@@ -232,15 +223,15 @@ canvas {
 }
 
 .sottotitolo {
-    font-family: 'Gaisyr', sans-serif;
+    font-family: 'Ortica', sans-serif;
     font-weight: 400;
     font-size: 1.2rem;
 }
 
 .paragrafo {
-    font-family: 'Gaisyr', serif;
+    font-family: 'Paragon', serif;
     font-weight: 200;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     grid-column: 3 / span 17;
     text-indent: 3rem; /* Indenta solo la prima riga */
     padding-bottom: 1rem;
@@ -400,10 +391,9 @@ a:hover {
     }
 
     .paragrafo {
-    font-family: 'Gaisyr', serif;
     grid-column: 2;
     font-weight: 200;
-    font-size: 1.15rem;
+    font-size: 0.97rem;
     text-indent: 0rem; 
     padding-bottom: 1rem;
     display: block;

@@ -65,8 +65,8 @@ input, textarea, select, [role="button"], [onclick] {
     }
 
     @font-face {
-      font-family: 'ExposureVAR';
-      src: url('assets/Fonts/ExposureTrialVAR.ttf') format('opentype');
+      font-family: 'Villette';
+      src: url('assets/Fonts/VILLETTE_V.6.1.ttf') format('opentype');
     }
 
     @font-face {
@@ -81,44 +81,23 @@ input, textarea, select, [role="button"], [onclick] {
       font-style: normal;
     }
 
-    @font-face {
-    font-family: 'Gaisyr'; /* Use your chosen family name */
-    src: url('assets/Fonts/ABCGaisyr-Light-Trial.otf') format('opentype');
-    font-weight: 100; /* Light */
-    font-style: normal;
-}
-
 @font-face {
-    font-family: 'Gaisyr'; /* Use your chosen family name */
-    src: url('assets/Fonts/ABCGaisyr-LightItalic-Trial.otf') format('opentype');
-    font-weight: 100; /* Light */
-    font-style: italic;
-}
-
-@font-face {
-    font-family: 'Gaisyr'; /* Use your chosen family name */
-    src: url('assets/Fonts/ABCGaisyr-Book-Trial.otf') format('opentype');
+    font-family: 'Paragon'; /* Use your chosen family name */
+    src: url('assets/Fonts/Paragon-Regular.otf') format('opentype');
     font-weight: 200; /* Regular */
     font-style: normal;
 }
 
 @font-face {
-    font-family: 'Gaisyr'; /* Use your chosen family name */
-    src: url('assets/Fonts/ABCGaisyr-BookItalic-Trial.otf') format('opentype');
+    font-family: 'Paragon'; /* Use your chosen family name */
+    src: url('assets/Fonts/Paragonitalic-Regular.otf') format('opentype');
     font-weight: 200; /* Regular */
     font-style: italic;
 }
 
 @font-face {
-    font-family: 'Gaisyr'; /* Use your chosen family name */
-    src: url('assets/Fonts/ABCGaisyr-Medium-Trial.otf') format('opentype');
-    font-weight: 300; /* Medium */
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'Gaisyr'; /* Use your chosen family name */
-    src: url('assets/Fonts/ABCGaisyr-Bold-Trial.otf') format('opentype');
+    font-family: 'Ortica'; /* Use your chosen family name */
+    src: url('assets/Fonts/OrticaLinear-Bold.otf') format('opentype');
     font-weight: 400; /* Bold */
     font-style: normal;
 }
@@ -202,9 +181,10 @@ input, textarea, select, [role="button"], [onclick] {
     #word1,
     #word2 {
       display: block;
-      font-family: 'ExposureVAR', serif;
+      font-family: 'Villette', serif;
       padding: 0 2rem;
       font-size: 0;
+      letter-spacing: -0.8rem;
     }
 
     #word2 {
@@ -223,10 +203,10 @@ input, textarea, select, [role="button"], [onclick] {
 
     @keyframes grow {
       0% {
-        font-variation-settings: 'EXPO' 60;
+        font-variation-settings: 'BLUR' -100;
       }
       100% {
-        font-variation-settings: 'EXPO' -70;
+        font-variation-settings: 'BLUR' 100;
       }
     }
 
@@ -336,7 +316,7 @@ input, textarea, select, [role="button"], [onclick] {
 }
 
 .titolo-sezione {
-      font-family: 'Gaisyr', serif;
+      font-family: 'Ortica', serif;
     font-weight: 300;
     font-style: normal;
     font-size: 1.5rem;
